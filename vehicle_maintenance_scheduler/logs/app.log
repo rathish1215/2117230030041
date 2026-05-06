@@ -107,3 +107,51 @@ STATUS      : 500
 DURATION    : 15 ms
 HEADERS     : {user-agent=PostmanRuntime/7.53.0, accept=*/*, postman-token=4e7b8e73-1de9-45da-98c6-d0f278f75c0f, host=localhost:8081, accept-encoding=gzip, deflate, br, connection=keep-alive}
 =====================================
+[2026-05-06 11:45:03.966] Starting optimal schedule computation...
+[2026-05-06 11:45:03.966] Fetching depots from: http://20.207.122.201/evaluation-service/depots
+[2026-05-06 11:45:04.344] Successfully fetched 4 depots
+[2026-05-06 11:45:04.345] Fetching vehicles from: http://20.207.122.201/evaluation-service/vehicles
+[2026-05-06 11:45:04.498] Successfully fetched 34 vehicles
+[2026-05-06 11:45:04.498] Computing schedules for 4 depots with 34 vehicles
+[2026-05-06 11:45:04.498] Processing Depot ID=2 with capacity=135 hours
+[2026-05-06 11:45:04.501] Depot ID=2 => Selected 33 vehicles, Duration=135/135, Impact=182
+[2026-05-06 11:45:04.502] Processing Depot ID=3 with capacity=188 hours
+[2026-05-06 11:45:04.502] Depot ID=3 => Selected 34 vehicles, Duration=141/188, Impact=183
+[2026-05-06 11:45:04.502] Processing Depot ID=4 with capacity=97 hours
+[2026-05-06 11:45:04.503] Depot ID=4 => Selected 26 vehicles, Duration=97/97, Impact=166
+[2026-05-06 11:45:04.503] Processing Depot ID=5 with capacity=164 hours
+[2026-05-06 11:45:04.504] Depot ID=5 => Selected 34 vehicles, Duration=141/164, Impact=183
+[2026-05-06 11:45:04.504] Schedule computation completed for all depots
+
+=====================================
+TIMESTAMP   : 2026-05-06 11:45:04.582
+METHOD      : GET
+URI         : /evaluation-service/depots
+CLIENT IP   : 0:0:0:0:0:0:0:1
+STATUS      : 200
+DURATION    : 649 ms
+HEADERS     : {user-agent=PostmanRuntime/7.53.0, accept=*/*, postman-token=39e52f73-2fd3-4f4e-9436-47a276b8b75f, host=localhost:8081, accept-encoding=gzip, deflate, br, connection=keep-alive}
+=====================================
+[2026-05-06 11:47:54.635] Starting optimal schedule computation...
+[2026-05-06 11:47:54.635] Fetching depots from: http://20.207.122.201/evaluation-service/depots
+[2026-05-06 11:47:54.891] Successfully fetched 3 depots
+[2026-05-06 11:47:54.891] Fetching vehicles from: http://20.207.122.201/evaluation-service/vehicles
+[2026-05-06 11:47:54.965] Successfully fetched 31 vehicles
+[2026-05-06 11:47:54.965] Computing schedules for 3 depots with 31 vehicles
+[2026-05-06 11:47:54.965] Processing Depot ID=2 with capacity=135 hours
+[2026-05-06 11:47:54.965] Depot ID=2 => Selected 30 vehicles, Duration=132/135, Impact=160
+[2026-05-06 11:47:54.965] Processing Depot ID=3 with capacity=188 hours
+[2026-05-06 11:47:54.966] Depot ID=3 => Selected 31 vehicles, Duration=140/188, Impact=161
+[2026-05-06 11:47:54.966] Processing Depot ID=4 with capacity=97 hours
+[2026-05-06 11:47:54.968] Depot ID=4 => Selected 24 vehicles, Duration=97/97, Impact=151
+[2026-05-06 11:47:54.968] Schedule computation completed for all depots
+
+=====================================
+TIMESTAMP   : 2026-05-06 11:47:54.971
+METHOD      : GET
+URI         : /evaluation-service/depots
+CLIENT IP   : 0:0:0:0:0:0:0:1
+STATUS      : 200
+DURATION    : 336 ms
+HEADERS     : {user-agent=PostmanRuntime/7.53.0, accept=*/*, postman-token=2008e75d-7138-4720-a79c-e5d5d9b6c828, host=localhost:8081, accept-encoding=gzip, deflate, br, connection=keep-alive}
+=====================================

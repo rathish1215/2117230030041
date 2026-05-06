@@ -30,7 +30,7 @@ public class ScheduleController {
      * computes optimal scheduling using 0/1 Knapsack DP,
      * and returns the optimized schedule for each depot.
      */
-    @GetMapping("/depots")
+    @GetMapping("/vehicles")
     public ResponseEntity<ScheduleResponseDTO> getOptimalSchedule() {
         List<ScheduleResultDTO> schedules = schedulingService.computeOptimalSchedules();
         return ResponseEntity.ok(new ScheduleResponseDTO(schedules));
