@@ -155,3 +155,139 @@ STATUS      : 200
 DURATION    : 336 ms
 HEADERS     : {user-agent=PostmanRuntime/7.53.0, accept=*/*, postman-token=2008e75d-7138-4720-a79c-e5d5d9b6c828, host=localhost:8081, accept-encoding=gzip, deflate, br, connection=keep-alive}
 =====================================
+
+=====================================
+TIMESTAMP   : 2026-05-06 11:48:31.011
+METHOD      : GET
+URI         : /evaluation-service/depots
+CLIENT IP   : 0:0:0:0:0:0:0:1
+STATUS      : 500
+DURATION    : 78 ms
+HEADERS     : {user-agent=PostmanRuntime/7.53.0, accept=*/*, postman-token=033a01e2-2c3f-40be-a554-0a80b2c92eea, host=localhost:8081, accept-encoding=gzip, deflate, br, connection=keep-alive}
+=====================================
+[2026-05-06 11:48:40.830] Starting optimal schedule computation...
+[2026-05-06 11:48:40.831] Fetching depots from: http://20.207.122.201/evaluation-service/depots
+[2026-05-06 11:48:41.209] Successfully fetched 3 depots
+[2026-05-06 11:48:41.209] Fetching vehicles from: http://20.207.122.201/evaluation-service/vehicles
+[2026-05-06 11:48:41.292] Successfully fetched 36 vehicles
+[2026-05-06 11:48:41.292] Computing schedules for 3 depots with 36 vehicles
+[2026-05-06 11:48:41.292] Processing Depot ID=3 with capacity=188 hours
+[2026-05-06 11:48:41.294] Depot ID=3 => Selected 36 vehicles, Duration=173/188, Impact=199
+[2026-05-06 11:48:41.294] Processing Depot ID=4 with capacity=97 hours
+[2026-05-06 11:48:41.295] Depot ID=4 => Selected 23 vehicles, Duration=97/97, Impact=158
+[2026-05-06 11:48:41.295] Processing Depot ID=5 with capacity=164 hours
+[2026-05-06 11:48:41.295] Depot ID=5 => Selected 34 vehicles, Duration=163/164, Impact=197
+[2026-05-06 11:48:41.296] Schedule computation completed for all depots
+
+=====================================
+TIMESTAMP   : 2026-05-06 11:48:41.313
+METHOD      : GET
+URI         : /evaluation-service/vehicles
+CLIENT IP   : 0:0:0:0:0:0:0:1
+STATUS      : 200
+DURATION    : 494 ms
+HEADERS     : {user-agent=PostmanRuntime/7.53.0, accept=*/*, postman-token=d8fffce4-4b5c-4fe7-bff0-653043e40f4a, host=localhost:8081, accept-encoding=gzip, deflate, br, connection=keep-alive}
+=====================================
+[2026-05-06 11:54:59.332] Starting optimal schedule computation...
+[2026-05-06 11:54:59.332] Fetching depots from: http://20.207.122.201/evaluation-service/depots
+[ERROR] [2026-05-06 11:54:59.522] Failed to fetch depots from: http://20.207.122.201/evaluation-service/depots
+org.springframework.web.client.HttpClientErrorException$Unauthorized: 401 Unauthorized on GET request for "http://20.207.122.201/evaluation-service/depots": "{"message":"invalid authorization token"}"
+	at org.springframework.web.client.HttpClientErrorException.create(HttpClientErrorException.java:106)
+	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:186)
+	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:147)
+	at org.springframework.web.client.RestTemplate.handleResponse(RestTemplate.java:953)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:902)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:801)
+	at org.springframework.web.client.RestTemplate.getForObject(RestTemplate.java:415)
+	at com.affordmed.scheduler.service.DepotService.fetchDepots(DepotService.java:41)
+	at com.affordmed.scheduler.service.SchedulingService.computeOptimalSchedules(SchedulingService.java:45)
+	at com.affordmed.scheduler.controller.ScheduleController.getOptimalSchedule(ScheduleController.java:35)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at com.affordmed.scheduler.middleware.LoggingMiddleware$LoggingFilter.doFilterInternal(LoggingMiddleware.java:124)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+=====================================
+TIMESTAMP   : 2026-05-06 11:54:59.527
+METHOD      : GET
+URI         : /evaluation-service/vehicles
+CLIENT IP   : 0:0:0:0:0:0:0:1
+STATUS      : 500
+DURATION    : 195 ms
+HEADERS     : {user-agent=PostmanRuntime/7.53.0, accept=*/*, postman-token=cbb7c25b-b4eb-4661-8e2a-2c256c8f766c, host=localhost:8081, accept-encoding=gzip, deflate, br, connection=keep-alive}
+=====================================
+[2026-05-06 11:56:21.225] Starting optimal schedule computation...
+[2026-05-06 11:56:21.226] Fetching depots from: http://20.207.122.201/evaluation-service/depots
+[2026-05-06 11:56:21.638] Successfully fetched 5 depots
+[2026-05-06 11:56:21.638] Fetching vehicles from: http://20.207.122.201/evaluation-service/vehicles
+[2026-05-06 11:56:21.784] Successfully fetched 33 vehicles
+[2026-05-06 11:56:21.784] Computing schedules for 5 depots with 33 vehicles
+[2026-05-06 11:56:21.784] Processing Depot ID=1 with capacity=60 hours
+[2026-05-06 11:56:21.788] Depot ID=1 => Selected 17 vehicles, Duration=60/60, Impact=128
+[2026-05-06 11:56:21.788] Processing Depot ID=2 with capacity=135 hours
+[2026-05-06 11:56:21.788] Depot ID=2 => Selected 30 vehicles, Duration=133/135, Impact=172
+[2026-05-06 11:56:21.788] Processing Depot ID=3 with capacity=188 hours
+[2026-05-06 11:56:21.789] Depot ID=3 => Selected 33 vehicles, Duration=156/188, Impact=176
+[2026-05-06 11:56:21.789] Processing Depot ID=4 with capacity=97 hours
+[2026-05-06 11:56:21.789] Depot ID=4 => Selected 25 vehicles, Duration=97/97, Impact=158
+[2026-05-06 11:56:21.789] Processing Depot ID=5 with capacity=164 hours
+[2026-05-06 11:56:21.791] Depot ID=5 => Selected 33 vehicles, Duration=156/164, Impact=176
+[2026-05-06 11:56:21.791] Schedule computation completed for all depots
+
+=====================================
+TIMESTAMP   : 2026-05-06 11:56:21.840
+METHOD      : GET
+URI         : /evaluation-service/vehicles
+CLIENT IP   : 0:0:0:0:0:0:0:1
+STATUS      : 200
+DURATION    : 644 ms
+HEADERS     : {user-agent=PostmanRuntime/7.53.0, accept=*/*, postman-token=04a08968-6b5c-4c80-921b-d83286ea6835, host=localhost:8081, accept-encoding=gzip, deflate, br, connection=keep-alive}
+=====================================
