@@ -307,6 +307,10 @@ WHERE studentID = 1042 AND isRead = false
 ORDER BY createdAt DESC;
 ```
 
+**Is this query accurate?**
+
+Yes, the query is **logically correct** — it fetches all unread notifications for student 1042, ordered by most recent first. However, it is **not optimized for performance** at scale (50,000 students, 5,000,000 notifications).
+
 **Why is this query slow?**
 
 1. **Full Table Scan** — With 5,000,000 rows and no appropriate index, the database must scan every row to find matches. This is O(n) where n = 5M.
@@ -317,11 +321,15 @@ ORDER BY createdAt DESC;
 
 4. **No LIMIT** — Returns ALL matching rows. A student might have thousands of unread notifications, all returned at once.
 
+**What would I change?**
+- Replace `SELECT *` with specific columns: `SELECT id, type, message, created_at`
+- Add a `LIMIT` clause (e.g., `LIMIT 20`) for pagination
+- Create a composite index (see Section 3.2)
+
 **Likely Computation Cost:**
-- **Scan**: O(5,000,000) rows to filter
-- **Sort**: O(k log k) where k = number of matching rows for student 1042
-- **I/O**: Full table scan reads hundreds of MB from disk
-- **Estimated time**: Several seconds to tens of seconds depending on hardware
+- **Without index**: O(5,000,000) full scan + O(k log k) sort = several seconds
+- **With composite index**: O(log n) index lookup + O(k) sequential read = sub-millisecond
+- **I/O**: Full table scan reads hundreds of MB from disk vs index scan reads a few KB
 
 ### 3.2 Is Adding Indexes on Every Column Effective?
 
@@ -356,18 +364,26 @@ LIMIT 20;
 
 ### 3.3 Query: Students with Placement Notifications in Last 7 Days
 
+The table contains a `notificationType` column which accepts `notification_type` enum values. The `notification_type` enum contains `Event`, `Result`, and `Placement`.
+
 ```sql
 SELECT DISTINCT student_id
 FROM notifications
-WHERE type = 'Placement'
+WHERE notificationType = 'Placement'
   AND created_at >= NOW() - INTERVAL '7 days';
 ```
 
 **Supporting index:**
 ```sql
 CREATE INDEX idx_notifications_type_recent
-    ON notifications (type, created_at DESC);
+    ON notifications (notificationType, created_at DESC);
 ```
+
+This query:
+- Uses the `notificationType` enum column to filter for `'Placement'` type
+- Filters by `created_at` for last 7 days
+- Returns distinct student IDs (avoids duplicates if a student has multiple placement notifications)
+- The composite index on `(notificationType, created_at DESC)` ensures an efficient range scan
 
 ---
 
@@ -453,7 +469,8 @@ function notify_all(student_ids: array, message: string):
     for student_id in student_ids:
         send_email(student_id, message)   # calls Email API
         save_to_db(student_id, message)   # DB insert
-        push_to_app(student_id, message)  # real time notification
+        push_to_app(student_id, message)  # pushes via SSE (Server-Sent Events
+                                          # as chosen in Stage 1)
 ```
 
 **Critical Problems:**
@@ -470,7 +487,28 @@ function notify_all(student_ids: array, message: string):
 
 6. **Single Point of Failure** — One server processes everything. If it crashes, everything stops.
 
-### 5.2 Should DB Save and Email Happen Together?
+### 5.2 Logs Indicate send_email Failed for 200 Students Midway — What Now?
+
+Since the loop is sequential and has no error handling, the failure at student #200 means:
+- **Students 1-199**: Received email, DB insert done, push sent ✅
+- **Student 200**: Email failed, but DB insert and push may or may not have executed (undefined state) ⚠️
+- **Students 201-50,000**: Got **nothing** — no email, no DB record, no push ❌
+
+**Immediate recovery steps:**
+
+1. **Identify affected students** — From logs, extract the list of student IDs that failed (starting from #200 onwards)
+2. **Check DB state** — Query the database to find which students already have the notification saved:
+   ```sql
+   SELECT student_id FROM notifications
+   WHERE message = '<the message>' AND created_at >= '<batch start time>'
+   ```
+3. **Compute the delta** — Students NOT in the DB result are the ones who were never processed
+4. **Retry only the missing students** — Run the notification flow again ONLY for the students who didn't receive it
+5. **For student #200 specifically** — Check if the DB insert happened. If yes, only retry the email. If no, retry everything.
+
+**This is exactly why the redesign (Section 5.4) uses a message queue with retry logic — so failures are handled automatically.**
+
+### 5.3 Should DB Save and Email Happen Together?
 
 **No, they should NOT happen in the same transaction.** Reasons:
 
@@ -481,7 +519,7 @@ function notify_all(student_ids: array, message: string):
 
 **Better approach:** Save to DB first (fast, reliable), then queue the email as an async task with its own retry logic.
 
-### 5.3 Redesigned Pseudocode
+### 5.4 Redesigned Pseudocode
 
 ```
 function notify_all(student_ids: array, message: string):
