@@ -1,0 +1,17 @@
+com\affordmed\scheduler\dto\DepotDTO.class
+com\affordmed\scheduler\dto\DepotResponseDTO.class
+com\affordmed\scheduler\dto\VehicleResponseDTO.class
+com\affordmed\scheduler\controller\ScheduleController.class
+com\affordmed\scheduler\middleware\LoggingMiddleware$AppLogger.class
+com\affordmed\scheduler\service\DepotService.class
+com\affordmed\scheduler\middleware\LoggingMiddleware$LoggingFilterConfig.class
+com\affordmed\scheduler\middleware\LoggingMiddleware$LoggingFilter.class
+com\affordmed\scheduler\dto\VehicleDTO.class
+com\affordmed\scheduler\dto\ScheduleResponseDTO.class
+com\affordmed\scheduler\middleware\LoggingMiddleware.class
+com\affordmed\scheduler\dto\ScheduleResultDTO.class
+com\affordmed\scheduler\exception\GlobalExceptionHandler.class
+com\affordmed\scheduler\VehicleSchedulerApplication.class
+com\affordmed\scheduler\service\SchedulingService.class
+com\affordmed\scheduler\config\RestClientConfig.class
+com\affordmed\scheduler\service\VehicleService.class

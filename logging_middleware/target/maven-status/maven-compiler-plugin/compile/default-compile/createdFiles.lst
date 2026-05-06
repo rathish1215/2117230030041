@@ -1,0 +1,5 @@
+com\affordmed\logging\LoggingMiddlewareApplication.class
+com\affordmed\logging\LogEntry.class
+com\affordmed\logging\LoggingConfig.class
+com\affordmed\logging\LoggingService.class
+com\affordmed\logging\LoggingFilter.class
