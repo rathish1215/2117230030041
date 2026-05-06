@@ -1,0 +1,18 @@
+[2026-05-06 12:45:30.491] Computing top 10 priority notifications...
+[2026-05-06 12:45:30.493] Fetching notifications from: http://20.207.122.201/evaluation-service/notifications
+[2026-05-06 12:45:30.912] Successfully fetched 20 notifications
+[2026-05-06 12:45:30.921] Top 10 priority notifications computed successfully
+[2026-05-06 12:45:30.927]   #1 [Placement] Advanced Micro Devices Inc. hiring (score=1808049865.00, weight=3)
+[2026-05-06 12:45:30.927]   #2 [Placement] TSMC hiring (score=1808044529.00, weight=3)
+[2026-05-06 12:45:30.927]   #3 [Placement] Advanced Micro Devices Inc. hiring (score=1808030109.00, weight=3)
+[2026-05-06 12:45:30.927]   #4 [Placement] Nvidia Corporation hiring (score=1808017473.00, weight=3)
+[2026-05-06 12:45:30.927]   #5 [Placement] PayPal Holdings Inc. hiring (score=1808013889.00, weight=3)
+[2026-05-06 12:45:30.927]   #6 [Placement] Broadcom Inc. hiring (score=1807994097.00, weight=3)
+[2026-05-06 12:45:30.927]   #7 [Placement] Advanced Micro Devices Inc. hiring (score=1807983277.00, weight=3)
+[2026-05-06 12:45:30.927]   #8 [Placement] Visa Inc. hiring (score=1807977925.00, weight=3)
+[2026-05-06 12:45:30.929]   #9 [Placement] Tesla Inc. hiring (score=1807977861.00, weight=3)
+[2026-05-06 12:45:30.929]   #10 [Result] project-review (score=1798044485.00, weight=2)
+
+=====================================
+TIME: 2026-05-06 12:45:30.979 | GET /api/notifications/priority?n=10 | STATUS: 200 | 558ms | IP: 0:0:0:0:0:0:0:1
+=====================================
