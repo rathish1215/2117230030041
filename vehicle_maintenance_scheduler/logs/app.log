@@ -74,3 +74,36 @@ STATUS      : 500
 DURATION    : 369 ms
 HEADERS     : {user-agent=Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.8328, host=localhost:8081, connection=Keep-Alive}
 =====================================
+[2026-05-06 11:41:00.548] Starting optimal schedule computation...
+[2026-05-06 11:41:00.549] Fetching depots from: http://20.207.122.201/evaluation-service/depots
+[2026-05-06 11:41:00.916] Successfully fetched 3 depots
+[2026-05-06 11:41:00.918] Fetching vehicles from: http://20.207.122.201/evaluation-service/vehicles
+[2026-05-06 11:41:01.095] Successfully fetched 32 vehicles
+[2026-05-06 11:41:01.096] Computing schedules for 3 depots with 32 vehicles
+[2026-05-06 11:41:01.096] Processing Depot ID=1 with capacity=60 hours
+[2026-05-06 11:41:01.098] Depot ID=1 => Selected 16 vehicles, Duration=60/60, Impact=125
+[2026-05-06 11:41:01.098] Processing Depot ID=2 with capacity=135 hours
+[2026-05-06 11:41:01.099] Depot ID=2 => Selected 31 vehicles, Duration=134/135, Impact=173
+[2026-05-06 11:41:01.099] Processing Depot ID=3 with capacity=188 hours
+[2026-05-06 11:41:01.099] Depot ID=3 => Selected 32 vehicles, Duration=141/188, Impact=174
+[2026-05-06 11:41:01.100] Schedule computation completed for all depots
+
+=====================================
+TIMESTAMP   : 2026-05-06 11:41:01.137
+METHOD      : GET
+URI         : /api/schedule
+CLIENT IP   : 0:0:0:0:0:0:0:1
+STATUS      : 200
+DURATION    : 626 ms
+HEADERS     : {user-agent=PostmanRuntime/7.53.0, accept=*/*, postman-token=273f8490-14c9-4bae-ac43-8618de8bc994, host=localhost:8081, accept-encoding=gzip, deflate, br, connection=keep-alive}
+=====================================
+
+=====================================
+TIMESTAMP   : 2026-05-06 11:44:10.462
+METHOD      : GET
+URI         : /evaluation-service/depot
+CLIENT IP   : 0:0:0:0:0:0:0:1
+STATUS      : 500
+DURATION    : 15 ms
+HEADERS     : {user-agent=PostmanRuntime/7.53.0, accept=*/*, postman-token=4e7b8e73-1de9-45da-98c6-d0f278f75c0f, host=localhost:8081, accept-encoding=gzip, deflate, br, connection=keep-alive}
+=====================================

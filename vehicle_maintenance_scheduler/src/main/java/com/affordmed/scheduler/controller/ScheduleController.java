@@ -14,7 +14,7 @@ import java.util.List;
  * REST controller exposing the vehicle maintenance scheduling API.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/evaluation-service")
 public class ScheduleController {
 
     private final SchedulingService schedulingService;
@@ -30,7 +30,7 @@ public class ScheduleController {
      * computes optimal scheduling using 0/1 Knapsack DP,
      * and returns the optimized schedule for each depot.
      */
-    @GetMapping("/schedule")
+    @GetMapping("/depots")
     public ResponseEntity<ScheduleResponseDTO> getOptimalSchedule() {
         List<ScheduleResultDTO> schedules = schedulingService.computeOptimalSchedules();
         return ResponseEntity.ok(new ScheduleResponseDTO(schedules));
